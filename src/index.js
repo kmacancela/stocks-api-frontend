@@ -1,16 +1,20 @@
 const bodyEl = document.createElement("body")
 const stocksDiv = document.querySelector(".stocks")
+// "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
+
+const url = "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 
 getStocks()
 getSP500()
 
 function getSP500(){
-    fetch("https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json")
+    fetch(proxyUrl + url)
     .then(r => r.json())
     .then(data => {
         console.log(data)
         data.forEach(dataPiece => {
-            console.log(dataPiece.Name)
+            console.log(dataPiece.Symbol)
         })
     })
 }
@@ -39,7 +43,7 @@ function displayTitle(stock){
     let symbol = stock["1. symbol"]
     let region = stock["4. region"]
 
-    stocksDiv.innerHTML += 
+    stocksDiv.innerHTML +=
     `
     <div class="card" data-id="${symbol}">
         <div class="content">
@@ -67,6 +71,6 @@ function displayTitle(stock){
 //     console.log(stock.contains("name"))
 //     let h1El = document.createElement("h1")
 //         h1El.textContent = stock.name
-//     bodyEl.append(h1El) 
+//     bodyEl.append(h1El)
 //     console.log(bodyEl)
 // }
