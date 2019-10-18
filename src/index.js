@@ -1,70 +1,71 @@
 const bodyEl = document.createElement("body")
-const stocksDiv = document.querySelector(".stocks")
 // "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
 
 const url = "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 
-getStocks()
+
 getSP500()
 
 function getSP500(){
     fetch(proxyUrl + url)
     .then(r => r.json())
     .then(data => {
-        console.log(data)
-        data.forEach(dataPiece => {
-            console.log(dataPiece.Symbol)
-        })
+      data.forEach(stock => {
+        displayTitle(stock);
+      })
     })
 }
 
-function getStocks(){
-    // fetch("https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=BA&apikey=CKKX1N7YZOUYD6IV")
-    fetch("https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=BA&apikey=demo")
+function getStocks(symbol){
+    // fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=CKKX1N7YZOUYD6IV`)
+    fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&apikey=CKKX1N7YZOUYD6IV`)
     .then(r => r.json())
     .then(data => {
-        let arrayOfStocks = []
-        data.bestMatches.forEach(dataPiece => {
-            arrayOfStocks.push(dataPiece)
-        })
-        arrayOfStocks.forEach(stock => {
-            // let updatedStock = JSON.parse(stock)[0]
-            // console.log(updatedStock)
-            // console.log(stock["1. symbol"])
-            displayTitle(stock)
-        })
+      console.log(data["Monthly Time Series"])
+
+        // let arrayOfStocks = []
+        // data.bestMatches.forEach(dataPiece => {
+        //     arrayOfStocks.push(dataPiece)
+        // })
+        // arrayOfStocks.forEach(stock => {
+        //     displayTitle(stock)
+        // })
     })
 }
 
 function displayTitle(stock){
-    let name = stock["2. name"]
-    let type = stock["3. type"]
-    let symbol = stock["1. symbol"]
-    let region = stock["4. region"]
+    //create elements
+    let stocksMainDIV = document.getElementById('stocksMainDIV')
+    let stockDIV = document.createElement('div')
+    let contentDIV = document.createElement('div')
+    let headerDIV = document.createElement('div')
+    let metaDIV = document.createElement('div')
+    let labelSPAN = document.createElement('span')
+    let buttonDIV = document.createElement('div')
+    let buyButton = document.createElement('button')
 
-    stocksDiv.innerHTML +=
-    `
-    <div class="card" data-id="${symbol}">
-        <div class="content">
-            <div class="header">
-                ${name}
-            </div>
-            <div class="meta">
-                ${type}
-            </div>
-            <div class="description">
-                ${symbol}
-            </div>
-            <span class="ui label">
-                ${region}
-            </span>
-        </div>
-        <div class="extra content">
-            <div class="ui blue button">Buy Ticket</div>
-        </div>
-    </div>
-    `
+    stockDIV.className = "card"
+    contentDIV.calssName = "content"
+    headerDIV.className = "header"
+    headerDIV.innerText = stock.Name
+    metaDIV.className = "meta"
+    metaDIV.innerText = stock.Sector
+    labelSPAN.className = "ui label"
+    labelSPAN.innerHTML = stock.Symbol
+    buttonDIV.className = "extra content"
+    buyButton.className = "ui blue button"
+    buyButton.innerText = "Buy Stock"
+
+    buttonDIV.append(buyButton)
+    contentDIV.append(headerDIV, metaDIV, labelSPAN)
+    stockDIV.append(contentDIV, buttonDIV)
+    stocksMainDIV.append(stockDIV)
+
+    buyButton.addEventListener("click", () => {
+      console.log(stock);
+      getStocks(stock.Symbol)
+    })
 }
 
 // function addStockToDOM(stock){
