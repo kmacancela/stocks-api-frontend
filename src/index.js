@@ -4,8 +4,17 @@ const bodyEl = document.createElement("body")
 const url = "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 
+let years = [1999, 2003, 2006, 2012, 2016, 2018]
 
-getSP500()
+
+// getSP500()
+// displayMonths()
+
+let newGame = new LoginPage()
+newGame.render()
+
+
+
 
 function getSP500(){
     fetch(proxyUrl + url)
@@ -17,26 +26,52 @@ function getSP500(){
     })
 }
 
+
+
+// Fetch stock based on the selection
 function getStocks(symbol){
     // fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=CKKX1N7YZOUYD6IV`)
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&apikey=CKKX1N7YZOUYD6IV`)
     .then(r => r.json())
     .then(data => {
-      console.log(data["Monthly Time Series"])
-
-        // let arrayOfStocks = []
-        // data.bestMatches.forEach(dataPiece => {
-        //     arrayOfStocks.push(dataPiece)
-        // })
-        // arrayOfStocks.forEach(stock => {
-        //     displayTitle(stock)
-        // })
+      debugger
+      let months = Object.keys(data["Monthly Time Series"])
+      let lastMonth = parseInt(months[0].slice(0,4))
+      let firstMonth = parseInt(months[months.length-1].slice(0,4))
+      return console.log(range(firstMonth, lastMonth))
     })
 }
 
+
+// Displays a selection of months inside the main DIV
+
+function displayMonths(){
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    stocksMainDIV.innerHTML = ""
+
+    months.forEach(month => {
+    let monthButton = document.createElement('a')
+    let stockDIV = document.createElement('div')
+
+    stockDIV.className = "card"
+    monthButton.className = "testbutton"
+    monthButton.innerText = month
+    stockDIV.append(monthButton)
+    stocksMainDIV.append(stockDIV)
+
+    monthButton.addEventListener('click', (evt) =>{
+
+
+    })
+  })
+}
+
+
+
+
+// Creates all stocks inside the main DIV
 function displayTitle(stock){
     //create elements
-    let stocksMainDIV = document.getElementById('stocksMainDIV')
     let stockDIV = document.createElement('div')
     let contentDIV = document.createElement('div')
     let headerDIV = document.createElement('div')
@@ -66,12 +101,15 @@ function displayTitle(stock){
       console.log(stock);
       getStocks(stock.Symbol)
     })
-}
 
-// function addStockToDOM(stock){
-//     console.log(stock.contains("name"))
-//     let h1El = document.createElement("h1")
-//         h1El.textContent = stock.name
-//     bodyEl.append(h1El)
-//     console.log(bodyEl)
-// }
+  // Range function
+    function range(rangeStart, rangeStop) {
+      var range = [];
+      for (var i = rangeStart; i <= rangeStop; i++) {
+        range.push(i);
+      }
+      return range
+    }
+
+
+}
