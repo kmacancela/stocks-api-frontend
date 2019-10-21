@@ -3,11 +3,31 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Stocks Game</h1>
-        <!-- stocks -->
-        <div class="ui cards stocks" id="stocksMainDIV">
+        <div class="sidenav">
+            <!-- Choosen stocks here -->
+        </div>
+        <div class="main">
+            <h1>Stocks Game</h1>
+            
+            <!-- search bar-->
+            <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name">
+            
+            <!-- stocks -->
+            <div class="ui cards stocks" id="stocksMainDIV">
+            </div>
+            
+            <!-- modal pop up box appears -->
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close-button">×</span>
+                    <h1>Pick a month for 2019!</h1>
+                    <button id="jan">January</button>
+                </div>
+            </div>
+            
         </div>
         <script src="src/index.js"></script>
     </body>
