@@ -1,5 +1,5 @@
-let newRound = new LoginPage()
-newRound.render()
+// let newRound = new LoginPage()
+// newRound.render()
 
 function monthlyData(stock, month){
     fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=ACN&apikey=CKKX1N7YZOUYD6IV`)
@@ -76,7 +76,7 @@ function popUpWindow(stock){
 
     let numEl = document.createElement("input")
         numEl.value = "Enter num of stocks"
-    
+
     modalDiv.append(numEl)
 
     let nextBtn = modalDiv.querySelector("#nextBtn")
