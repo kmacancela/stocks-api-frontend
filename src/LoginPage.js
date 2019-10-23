@@ -13,6 +13,8 @@ class LoginPage {
 
         this.easyButton.addEventListener('click', () => {
             startingAccount = 20000
+            // console.log("Login: ", startingAccount)
+            balance.innerHTML = `Balance: $${startingAccount}`
             stocksMainDIV.innerHTML = ""
 
             ModalStocks.getSP500()
@@ -22,11 +24,14 @@ class LoginPage {
                     let newStock = new StockCard(stock)
                     newStock.render()
                 })
+                sidenav.style.visibility = "visible"
+                searchBar.style.visibility = "visible"
             })
         })
 
         this.mediumButton.addEventListener('click', () => {
             startingAccount = 10000
+            balance.innerHTML = `Balance: $${startingAccount}`
             stocksMainDIV.innerHTML = ""
 
             ModalStocks.getSP500().then(data => {
@@ -35,11 +40,14 @@ class LoginPage {
                     let newStock = new StockCard(stock)
                     newStock.render()
                 })
+                sidenav.style.visibility = "visible"
+                searchBar.style.visibility = "visible"
             })
         })
 
         this.hardButton.addEventListener('click', () => {
             startingAccount = 5000
+            balance.innerHTML = `Balance: $${startingAccount}`
             stocksMainDIV.innerHTML = ""
 
             ModalStocks.getSP500().then(data => {
@@ -49,6 +57,8 @@ class LoginPage {
                     newStock.render()
                 })
             })
+            sidenav.style.visibility = "visible"
+            searchBar.style.visibility = "visible"
         })
 
     }
@@ -91,3 +101,12 @@ class LoginPage {
       })
     }
 }
+
+// var $button = document.querySelector('.button');
+// $button.addEventListener('click', function() {
+//   var duration = 0.3,
+//       delay = 0.08;
+//   TweenMax.to($button, duration, {scaleY: 1.6, ease: Expo.easeOut});
+//   TweenMax.to($button, duration, {scaleX: 1.2, scaleY: 1, ease: Back.easeOut, easeParams: [3], delay: delay});
+//   TweenMax.to($button, duration * 1.25, {scaleX: 1, scaleY: 1, ease: Back.easeOut, easeParams: [6], delay: delay * 3 });
+// });

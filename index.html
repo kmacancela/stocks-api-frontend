@@ -6,11 +6,22 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
 </head>
 
 <body>
-    <div class="sidenav">
-        <!-- Choosen stocks here -->
+
+        <!-- <div class="button">
+            <p>Click me</p>
+        </div> -->
+
+    <div class="sidenav" style="visibility: hidden">
+        <div class="sidestocks ui cards stocks">
+            <h1 class="balance"></h1>
+            <!-- Choosen stocks here -->
+            <button class name="done">Done</button>
+        </div>
     </div>
 
 
@@ -20,6 +31,7 @@
 
 
     <div class="main">
+<<<<<<< HEAD
         <h1>Stocks Game</h1>
         <div id="optionBar">
           <button id="buttonNewGame" class="">New Game</button>
@@ -27,16 +39,24 @@
         </div>
 
 
+=======
+>>>>>>> master
 
         <!-- search bar-->
-        <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name">
+        <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name" style="visibility: hidden">
 
-        <!-- stocks -->
         <div class="ui cards stocks" id="stocksMainDIV">
+<<<<<<< HEAD
           <div class="chart" style="background-color: white">
 
 
           </div>
+=======
+            <!-- stocks -->
+            <!-- <div class="button">
+                    <p>Click me</p>
+                </div> -->
+>>>>>>> master
         </div>
 
 
@@ -46,17 +66,35 @@
         <!-- modal pop up box appears -->
         <div class="modal">
             <div class="modal-content">
-                <span class="close-button">×</span>
 
-                <h1>Pick a month for 2019!</h1>
+                <!-- <span class="close-button">×</span> -->
+
+                <h1>Pick a month for 2018!</h1>
                 <!-- <div id="modal-choice"> -->
-                <form>
-                    <button id="jan" name="January">January</button>
-                    <button id="feb" name="February">February</button>
+                <form data-id="">
+                    <div class="month-btns">
+                        <button id="jan" name="January">January</button>
+                        <button id="feb" name="February">February</button>
+                        <button id="mar" name="March">March</button>
+                        <button id="apr" name="April">April</button>
+                        <button id="may" name="May">May</button>
+                        <button id="jun" name="June">June</button>
+                        <button id="jul" name="July">July</button>
+                        <button id="aug" name="August">August</button>
+                        <button id="sep" name="September">September</button>
+                        <button id="oct" name="October">October</button>
+                        <button id="nov" name="November">November</button>
+                        <button id="dec" name="December">December</button>
+                    </div>
 
-                    <!-- <input type="number" id="amountStocks" /> -->
-                    <div id="calculate"></div>
-                    <input type="submit" name="nextBtn" value="Next" />
+                    <div id="calculate">
+                        <!-- <label for="shareValue">Share Value</label><br> -->
+                        <span id="shareValue"><b>price</b></span>
+                        <input type="number" id="shares" placeholder="Number of stocks" onkeyup="shareTotal()" disabled/>
+                        <label for="total">Total</label>
+                        <span id="totalShareValue">$0</span>
+                    </div>
+                    <input type="submit" id= "nextBtn" name="nextBtn" value="Next" onclick="nextB()" disabled />
                     <!-- <button id="nextBtn">Next</button> -->
                 <!-- </div> -->
                 </form>

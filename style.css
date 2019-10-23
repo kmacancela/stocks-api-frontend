@@ -38,31 +38,41 @@
 /* Style for side navbar */
 
 .sidenav {
-    height: 100%;
-    width: 160px;
+    height: 110%;
+    width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #fff;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.sidestocks {
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
     overflow-x: hidden;
     padding-top: 20px;
 }
 
-.sidenav a {
+/* .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
-}
+} */
 
-.sidenav a:hover {
+/* .sidenav a:hover {
     color: #f1f1f1;
-}
+} */
 
 .main {
-    margin-left: 160px;
+    margin-left: 320px;
     /* Same as the width of the sidenav */
     font-size: 18px;
     /* Increased text to enable scrolling */
@@ -333,23 +343,64 @@ input {
 input:focus {
     box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
 }
-/* Table */
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+
+
+/* For the intro styling page */
+body {
+    background: #f1c40f;
+  }
+
+.button {
+    background: #3498db;
+    width: 180px;
+    padding: 4px 0;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 3px;
+    /* text-transform: uppercase; */
+/*
+
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        border-radius: 50%;
+        background-color: darken(#f1c40f, 20%);
+        opacity: 0.4;
+        bottom: -30px;
+    } */
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+div.button p {
+    font-family: 'Roboto';
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    user-select: none;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+div.button p:hover {
+    cursor: pointer;
 }
 
-.table {
-padding-right: 20px;
+div.button p:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: darken(#f1c40f, 20%);
+    opacity: 0.4;
+    bottom: -30px;
 }

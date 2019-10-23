@@ -3,56 +3,94 @@ let newRound = new LoginPage()
 newRound.render()
 
 let stocksArr = {}
+let currentStock = null
 const calculateModal = document.querySelector("#calculate")
 const formEl = modalDiv.querySelector("form")
 
 // ModalStocks.getSP500().then(data => {
 //     data.forEach(stock => {
-//         // displayTitle(stock);
 //         let newStock = new StockCard(stock)
 //         newStock.render()
+//         // popUpWindow(stock)
 //     })
 // })
 
 // calls
 const nextBtn = modalDiv.querySelector("#nextBtn")
-
-let numEl = document.createElement("input")
-    numEl.value = "Enter num of stocks"
-    modalDiv.append(numEl)
+const monthBtns = document.querySelector(".month-btns")
+const sharePrice = document.querySelector("#shareValue")
+const shareInput = document.querySelector("#shares")
+const totalField = document.querySelector("#totalShareValue")
+const mainDiv = document.querySelector(".main")
 
 
 function monthlyData(stock, month){
+  console.log(stock, month)
+  console.log("fetching");
     return fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${stock}&apikey=CKKX1N7YZOUYD6IV`)
     // fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=ACN&apikey=demo`)
     .then(r => r.json())
     .then(data => {
-        let monthlyData = data["Monthly Time Series"]
-        // let chosenMonthData = monthlyData
-        console.log(monthlyData);
-        let keysArray = Object.keys(monthlyData)
-        console.log("Month passed: ", month)
+        let monthData = data["Monthly Time Series"]
+        let keysArray = Object.keys(monthData)
+
+        console.log(monthData)
         let monthD
         if (month == "January"){
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-01"
+                return x.substring(0,7) == "2018-01"
             })
         } else if (month == "February") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-02"
+                return x.substring(0,7) == "2018-02"
             })
-            console.log("TEST: ", monthD)
+        } else if (month == "March") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-03"
+            })
+        } else if (month == "April") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-04"
+            })
+        } else if (month == "May") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-05"
+            })
+            } else if (month == "June") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-06"
+            })
+        } else if (month == "July") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-07"
+            })
+        } else if (month == "August") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-08"
+            })
+        } else if (month == "September") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-09"
+            })
+        } else if (month == "October") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-10"
+            })
+        } else if (month == "November") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-11"
+            })
+        } else if (month == "December") {
+            monthD = keysArray.filter(x => {
+                return x.substring(0,7) == "2018-12"
+            })
         }
-        console.log("MonthD: ", monthD)
-        let stockChosen = monthlyData[monthD]
-        console.log("Chosen Month Data:", stockChosen)
-
-        let average = (~~stockChosen["2. high"] + ~~stockChosen["3. low"]) / 2.00
-        // console.log("Average: ", average)
-        // stocksArr.push({"Symbol": stock, "Average": average, "Month": month})
-        // stocksArr.push(stock: {"Average": average, "Month": month})
+        let stockChosen = monthData[monthD]
+        console.log(stockChosen);
+        let average = (~~stockChosen["2. high"] + ~~stockChosen["3. low"]) / 2
         stocksArr[stock] = {"average": average, "month": month}
-        console.log("Stock Arr: ", stocksArr)
+        console.log("stocksArr: ", stocksArr)
+        checkAmount()
         return average
     })
 }
@@ -62,12 +100,9 @@ function monthlyData(stock, month){
 
 // will search through stocks using symbol
 function searchStocks() {
-    let stocksMainDIV = document.getElementById('stocksMainDIV')
-        // let allStockCards = document.getElementsByClassName('card')
     let allSpans = stocksMainDIV.querySelectorAll("span")
     allSpans.forEach(span => {
         let input = document.getElementById("myInput");
-        // converts input to uppercase, for filtering purposes
         let filter = input.value.toUpperCase();
         txtValue = span.textContent
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -79,43 +114,81 @@ function searchStocks() {
 }
 
 // modal popup box test
-function toggleModal() {
-    modal.classList.toggle("show-modal");
-}
-
-function windowOnClick(event) {
-    if (event.target === modal) {
-        toggleModal()
-    }
-}
-
-closeButton.addEventListener("click", toggleModal)
-window.addEventListener("click", windowOnClick)
-
-// when user chooses a stock to add to nav bar or to update
-
-// user should choose a month, amount of stocks
-function popUpWindow(stock){
-    formEl.addEventListener("click", async (evt) => {
-        evt.preventDefault()
-        let month = evt.target.name
-        let average
-        if (month != ""){
-            let stockSymbol = stock.Symbol
-            let average = await monthlyData(stockSymbol, month)
-            console.log("Averageline 104: ", average)
-            // .then(data => {
-            //     average = data
-            //     console.log("Data: ", data)
-            // })
-
-
-    let numEl = document.createElement("input")
-        numEl.value = "Enter num of stocks"
-
-    modalDiv.append(numEl)
-
-
-        }
+function toggleModal(stockSymbol) {
+    let buttons = modal.querySelectorAll("button")
+    buttons.forEach(button => {
+        button.disabled = false
+        button.style.backgroundColor = ""
+        nextBtn.disabled = true
+        nextBtn.style.backgroundColor = ""
+        sharePrice.innerHTML = "<b>price</b>"
+        shareInput.placeholder = "Number of stocks"
+        shareInput.value = ""
+        shareInput.disabled = true
+        totalField.innerHTML = "$0"
     })
+    modal.classList.toggle("show-modal");
+    formEl.dataset.id= stockSymbol
+}
+
+formEl.addEventListener("click", async (evt) => {
+    evt.preventDefault()
+
+    if (evt.target.tagName == "BUTTON"){
+      let month = evt.target.name
+
+      shareInput.disabled = false
+      event.target.style.backgroundColor = "green"
+      event.target.disabled = true
+      monthBtns.querySelectorAll("button").forEach(button => button.disabled = true)
+
+      currentStock = event.currentTarget.dataset.id
+
+      let average = await monthlyData(currentStock, month)
+      sharePrice.innerHTML = `
+          $${average} x
+      `
+    }
+})
+
+// function search(stock){
+//
+// }
+
+
+// function popUpWindow(stock){
+//
+// }
+
+function shareTotal(){
+    let input = shareInput.value
+    if ((input != ("" || 0)) || (input < 0)) {
+        nextBtn.disabled = false
+        nextBtn.style.backgroundColor = "green"
+    } else {
+        nextBtn.disabled = true
+        nextBtn.style.backgroundColor = ""
+    }
+    let price = stocksArr[currentStock].average
+    let total = input * price
+    totalField.innerHTML = `
+        $${total}
+    `
+}
+
+function nextB(){
+    toggleModal()
+    let spanElements = mainDiv.querySelectorAll(".symbol")
+    let spanArray = Array.from(spanElements)
+    let i = spanArray.filter(s => s.innerHTML == currentStock)
+    let cardChosen = i[0].parentElement.parentElement
+    let sideStocksDiv = document.querySelector(".sidestocks")
+    cardChosen.lastElementChild.remove()
+    sideStocksDiv.append(cardChosen)
+}
+
+function checkAmount(){
+    if(Object.keys(stocksArr).length == 2) {
+        console.log("YES")
+    }
 }
