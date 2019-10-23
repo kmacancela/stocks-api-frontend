@@ -27,6 +27,7 @@ function monthlyData(stock, month){
     .then(data => {
         let monthlyData = data["Monthly Time Series"]
         // let chosenMonthData = monthlyData
+        console.log(monthlyData);
         let keysArray = Object.keys(monthlyData)
         console.log("Month passed: ", month)
         let monthD
@@ -44,7 +45,7 @@ function monthlyData(stock, month){
         let stockChosen = monthlyData[monthD]
         console.log("Chosen Month Data:", stockChosen)
 
-        let average = (~~stockChosen["2. high"] + ~~stockChosen["3. low"]) / 2
+        let average = (~~stockChosen["2. high"] + ~~stockChosen["3. low"]) / 2.00
         // console.log("Average: ", average)
         // stocksArr.push({"Symbol": stock, "Average": average, "Month": month})
         // stocksArr.push(stock: {"Average": average, "Month": month})
@@ -100,13 +101,13 @@ function popUpWindow(stock){
         if (month != ""){
             let stockSymbol = stock.Symbol
             let average = await monthlyData(stockSymbol, month)
-            console.log("Average: ", average)
+            console.log("Averageline 104: ", average)
             // .then(data => {
-            //     average = data 
+            //     average = data
             //     console.log("Data: ", data)
             // })
-            
-            
+
+
         }
     })
 }
