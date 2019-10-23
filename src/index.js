@@ -23,6 +23,8 @@ const totalField = document.querySelector("#totalShareValue")
 const mainDiv = document.querySelector(".main")
 
 function monthlyData(stock, month){
+  console.log(stock, month)
+  console.log("fetching");
     return fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${stock}&apikey=CKKX1N7YZOUYD6IV`)
     // fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=ACN&apikey=demo`)
     .then(r => r.json())
@@ -30,58 +32,59 @@ function monthlyData(stock, month){
         let monthData = data["Monthly Time Series"]
         let keysArray = Object.keys(monthData)
 
-        console.log("Month passed: ", month)
+        console.log(monthData)
         let monthD
         if (month == "January"){
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-01"
+                return x.substring(0,7) == "2018-01"
             })
         } else if (month == "February") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-02"
+                return x.substring(0,7) == "2018-02"
             })
         } else if (month == "March") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-03"
+                return x.substring(0,7) == "2018-03"
             })
         } else if (month == "April") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-04"
+                return x.substring(0,7) == "2018-04"
             })
         } else if (month == "May") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-05"
+                return x.substring(0,7) == "2018-05"
             })
             } else if (month == "June") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-06"
+                return x.substring(0,7) == "2018-06"
             })
         } else if (month == "July") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-07"
+                return x.substring(0,7) == "2018-07"
             })
         } else if (month == "August") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-08"
+                return x.substring(0,7) == "2018-08"
             })
         } else if (month == "September") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-09"
+                return x.substring(0,7) == "2018-09"
             })
         } else if (month == "October") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-10"
+                return x.substring(0,7) == "2018-10"
             })
         } else if (month == "November") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-11"
+                return x.substring(0,7) == "2018-11"
             })
         } else if (month == "December") {
             monthD = keysArray.filter(x => {
-                return x.substring(0,7) == "2019-12"
+                return x.substring(0,7) == "2018-12"
             })
-        } 
+        }
         let stockChosen = monthData[monthD]
+        console.log(stockChosen);
         let average = (~~stockChosen["2. high"] + ~~stockChosen["3. low"]) / 2
         stocksArr[stock] = {"average": average, "month": month}
         console.log("stocksArr: ", stocksArr)
@@ -109,7 +112,7 @@ function searchStocks() {
 }
 
 // modal popup box test
-function toggleModal() {
+function toggleModal(stockSymbol) {
     let buttons = modal.querySelectorAll("button")
     buttons.forEach(button => {
         button.disabled = false
@@ -123,70 +126,37 @@ function toggleModal() {
         totalField.innerHTML = "$0"
     })
     modal.classList.toggle("show-modal");
+    formEl.dataset.id= stockSymbol
 }
 
-// user should choose a month, amount of stocks
-// function popUpWindow(stock){
-//     formEl.addEventListener("click", async (evt) => {
-//         evt.preventDefault()
-//         let month = evt.target.name
-//         if (evt.target.tagName == "BUTTON"){
-//             shareInput.disabled = false
-//             event.target.style.backgroundColor = "green"
-//             event.target.disabled = true
+formEl.addEventListener("click", async (evt) => {
+    evt.preventDefault()
 
-//             monthBtns.querySelectorAll("button").forEach(button => button.disabled = true)
+    if (evt.target.tagName == "BUTTON"){
+      let month = evt.target.name
 
-//             currentStock = stock.Symbol
-//             let average = await monthlyData(currentStock, month)
-//             sharePrice.innerHTML = `
-//                 $${average} x 
-//             `
-//         }
-//     })
+      shareInput.disabled = false
+      event.target.style.backgroundColor = "green"
+      event.target.disabled = true
+      monthBtns.querySelectorAll("button").forEach(button => button.disabled = true)
+
+      currentStock = event.currentTarget.dataset.id
+
+      let average = await monthlyData(currentStock, month)
+      sharePrice.innerHTML = `
+          $${average} x
+      `
+    }
+})
+
+// function search(stock){
+//
 // }
-function popUpWindow(stock){
-    // debugger
-    console.log(formEl)
-    formEl.addEventListener("click", async (evt) => {
-        evt.preventDefault()
-        let month = evt.target.name
-        console.log(month)
-        if (evt.target.tagName == "BUTTON"){
-            shareInput.disabled = false
-            event.target.style.backgroundColor = "green"
-            event.target.disabled = true
 
-            monthBtns.querySelectorAll("button").forEach(button => button.disabled = true)
 
-            currentStock = stock.Symbol
-            let average = await monthlyData(currentStock, month)
-            sharePrice.innerHTML = `
-                $${average} x 
-            `
-        }
-    })
-
-    // formEl.addEventListener("click", (evt) => {
-    //     evt.preventDefault()
-    //     let month = evt.target.name
-    //     if (evt.target.tagName == "BUTTON"){
-    //         shareInput.disabled = false
-    //         event.target.style.backgroundColor = "green"
-    //         event.target.disabled = true
-
-    //         monthBtns.querySelectorAll("button").forEach(button => button.disabled = true)
-
-    //         currentStock = stock.Symbol
-    //         let average = monthlyData(currentStock, month)
-    //         .then(data => {
-    //             sharePrice.innerHTML = `
-    //                 $${data} x 
-    //             `
-    //         })
-    //     }
-    // })
-}
+// function popUpWindow(stock){
+//
+// }
 
 function shareTotal(){
     let input = shareInput.value
@@ -194,7 +164,7 @@ function shareTotal(){
         nextBtn.disabled = false
         nextBtn.style.backgroundColor = "green"
     } else {
-        nextBtn.disabled = true 
+        nextBtn.disabled = true
         nextBtn.style.backgroundColor = ""
     }
     let price = stocksArr[currentStock].average
@@ -205,7 +175,7 @@ function shareTotal(){
 }
 
 function nextB(){
-    toggleModal()   
+    toggleModal()
     let spanElements = mainDiv.querySelectorAll(".symbol")
     let spanArray = Array.from(spanElements)
     let i = spanArray.filter(s => s.innerHTML == currentStock)

@@ -13,20 +13,7 @@ class StockCard {
     this.buyButton = document.createElement('button')
 
     this.buyButton.addEventListener("click", () => {
-        // ModalStocks.getStocks(this.symbol)
-        //   .then(data => {
-        //       // console.log("Monthly: ", data["Monthly Time Series"])
-        //       // let monthlyData = data["Monthly Time Series"]
-        //       // console.log(monthlyData["2019-10-21"])
-        //   })
-
-        // will trigger modal popup window
-        if (event.target === this.buyButton) {
-            toggleModal();
-        }
-
-        // to add data in modal
-        popUpWindow(stock)
+      toggleModal(stock.Symbol);
     })
 
   }
