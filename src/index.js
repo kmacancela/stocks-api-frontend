@@ -29,6 +29,7 @@ function monthlyData(stock, month){
     .then(data => {
         let monthData = data["Monthly Time Series"]
         let keysArray = Object.keys(monthData)
+
         console.log("Month passed: ", month)
         let monthD
         if (month == "January"){
