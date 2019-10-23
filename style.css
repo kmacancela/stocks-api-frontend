@@ -38,31 +38,41 @@
 /* Style for side navbar */
 
 .sidenav {
-    height: 100%;
-    width: 160px;
+    height: 110%;
+    width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #fff;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.sidestocks {
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
     overflow-x: hidden;
     padding-top: 20px;
 }
 
-.sidenav a {
+/* .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
-}
+} */
 
-.sidenav a:hover {
+/* .sidenav a:hover {
     color: #f1f1f1;
-}
+} */
 
 .main {
-    margin-left: 160px;
+    margin-left: 320px;
     /* Same as the width of the sidenav */
     font-size: 18px;
     /* Increased text to enable scrolling */

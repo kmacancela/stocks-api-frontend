@@ -13,12 +13,12 @@ class StockCard {
     this.buyButton = document.createElement('button')
 
     this.buyButton.addEventListener("click", () => {
-        ModalStocks.getStocks(this.symbol)
-          .then(data => {
-              // console.log("Monthly: ", data["Monthly Time Series"])
-              // let monthlyData = data["Monthly Time Series"]
-              // console.log(monthlyData["2019-10-21"])
-          })
+        // ModalStocks.getStocks(this.symbol)
+        //   .then(data => {
+        //       // console.log("Monthly: ", data["Monthly Time Series"])
+        //       // let monthlyData = data["Monthly Time Series"]
+        //       // console.log(monthlyData["2019-10-21"])
+        //   })
 
         // will trigger modal popup window
         if (event.target === this.buyButton) {
@@ -34,12 +34,13 @@ class StockCard {
 
     render(){
       this.stockDIV.className = "card"
+      // this.stockDIV.setAttribute("data-id", )
       this.contentDIV.className = "content"
       this.headerDIV.className = "header"
       this.headerDIV.innerText = this.name
       this.metaDIV.className = "meta"
       this.metaDIV.innerText = this.sector
-      this.labelSPAN.className = "ui label"
+      this.labelSPAN.className = "ui label symbol"
       this.labelSPAN.innerHTML = this.symbol
       this.buttonDIV.className = "extra content"
       this.buyButton.className = "ui blue button"
