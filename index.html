@@ -17,8 +17,14 @@
 
 
 
+
+
     <div class="main">
         <h1>Stocks Game</h1>
+        <div id="optionBar">
+          <button id="buttonNewGame" class="">New Game</button>
+          <button id="buttonScore" class="selected">Score Table</button>
+        </div>
 
 
 
@@ -28,7 +34,7 @@
         <!-- stocks -->
         <div class="ui cards stocks" id="stocksMainDIV">
           <div class="chart" style="background-color: white">
-            <canvas id="myChart" width="800" height="600"></canvas>
+
 
           </div>
         </div>
@@ -56,11 +62,19 @@
                 </form>
             </div>
         </div>
+
     </div>
+
+
+
+
+
+
     <script src="src/variables.js"></script>
     <script src="src/ModalStocks.js"></script>
-    <script src="src/StockCard.js"></script>
     <script src="src/LoginPage.js"></script>
+    <script src="src/ScoreTable.js"></script>
+    <script src="src/StockCard.js"></script>
     <script src="src/chart.js"></script>
     <script src="src/index.js"></script>
 </body>

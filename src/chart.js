@@ -1,4 +1,5 @@
 
+//     <canvas id="myChart" width="800" height="600"></canvas>
 
 //
 // let appleStocks = 30
@@ -12,10 +13,7 @@ monthly = [3000, 2500, 2780, 3400, 3456]
 month = ["Jan", "Fev", "Mar", "Apr", "May"]
 //
 
-getChart()
-
-
-
+// getChart()
 
 function getChart(){
   let ctx = document.getElementById('myChart').getContext('2d');

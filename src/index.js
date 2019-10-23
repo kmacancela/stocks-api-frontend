@@ -1,19 +1,18 @@
-// let newRound = new LoginPage()
-// newRound.render()
-<<<<<<< HEAD
-=======
+LoginPage.scoreAndGame()
+let newRound = new LoginPage()
+newRound.render()
 
 let stocksArr = {}
 const calculateModal = document.querySelector("#calculate")
 const formEl = modalDiv.querySelector("form")
 
-ModalStocks.getSP500().then(data => {
-    data.forEach(stock => {
-        // displayTitle(stock);
-        let newStock = new StockCard(stock)
-        newStock.render()
-    })
-})
+// ModalStocks.getSP500().then(data => {
+//     data.forEach(stock => {
+//         // displayTitle(stock);
+//         let newStock = new StockCard(stock)
+//         newStock.render()
+//     })
+// })
 
 // calls
 const nextBtn = modalDiv.querySelector("#nextBtn")
@@ -21,7 +20,7 @@ const nextBtn = modalDiv.querySelector("#nextBtn")
 let numEl = document.createElement("input")
     numEl.value = "Enter num of stocks"
     modalDiv.append(numEl)
->>>>>>> master
+
 
 function monthlyData(stock, month){
     return fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${stock}&apikey=CKKX1N7YZOUYD6IV`)
@@ -110,13 +109,12 @@ function popUpWindow(stock){
             //     console.log("Data: ", data)
             // })
 
-<<<<<<< HEAD
+
     let numEl = document.createElement("input")
         numEl.value = "Enter num of stocks"
 
     modalDiv.append(numEl)
-=======
->>>>>>> master
+
 
         }
     })
