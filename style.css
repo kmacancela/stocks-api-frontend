@@ -343,3 +343,64 @@ input {
 input:focus {
     box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
 }
+
+
+/* For the intro styling page */
+body {
+    background: #f1c40f;
+  }
+  
+.button {
+    background: #3498db;
+    width: 180px;
+    padding: 4px 0;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 3px;
+    /* text-transform: uppercase; */
+/* 
+    
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        border-radius: 50%;
+        background-color: darken(#f1c40f, 20%);
+        opacity: 0.4;
+        bottom: -30px;
+    } */
+}
+
+div.button p {
+    font-family: 'Roboto'; 
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    user-select: none;
+}
+
+div.button p:hover {
+    cursor: pointer;
+}
+
+div.button p:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: darken(#f1c40f, 20%);
+    opacity: 0.4;
+    bottom: -30px;
+}

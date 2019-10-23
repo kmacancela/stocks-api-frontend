@@ -1,18 +1,18 @@
-// let newRound = new LoginPage()
-// newRound.render()
+let newRound = new LoginPage()
+newRound.render()
 
 let stocksArr = {}
 let currentStock = null
 const calculateModal = document.querySelector("#calculate")
 const formEl = modalDiv.querySelector("form")
 
-ModalStocks.getSP500().then(data => {
-    data.forEach(stock => {
-        let newStock = new StockCard(stock)
-        newStock.render()
-        // popUpWindow(stock)
-    })
-})
+// ModalStocks.getSP500().then(data => {
+//     data.forEach(stock => {
+//         let newStock = new StockCard(stock)
+//         newStock.render()
+//         // popUpWindow(stock)
+//     })
+// })
 
 // calls
 const nextBtn = modalDiv.querySelector("#nextBtn")
@@ -146,12 +146,11 @@ function toggleModal() {
 //     })
 // }
 function popUpWindow(stock){
-    // debugger
     console.log(formEl)
     formEl.addEventListener("click", async (evt) => {
         evt.preventDefault()
         let month = evt.target.name
-        console.log(month)
+        console.log("month:", month)
         if (evt.target.tagName == "BUTTON"){
             shareInput.disabled = false
             event.target.style.backgroundColor = "green"
@@ -190,7 +189,7 @@ function popUpWindow(stock){
 
 function shareTotal(){
     let input = shareInput.value
-    if (input != ("" || 0)) {
+    if ((input != ("" || 0)) || (input < 0)) {
         nextBtn.disabled = false
         nextBtn.style.backgroundColor = "green"
     } else {

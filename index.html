@@ -5,35 +5,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
 </head>
 
 <body>
-    <div class="sidenav">
+
+        <!-- <div class="button">
+            <p>Click me</p>
+        </div> -->
+
+    <div class="sidenav" style="visibility: hidden">
         <div class="sidestocks ui cards stocks">
+            <h1 class="balance"></h1>
             <!-- Choosen stocks here -->
             <button class name="done">Done</button>
         </div>
     </div>
     <div class="main">
-        <h1>Stocks Game</h1>
 
         <!-- search bar-->
-        <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name">
+        <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name" style="visibility: hidden">
 
         <div class="ui cards stocks" id="stocksMainDIV">
             <!-- stocks -->
+            <!-- <div class="button">
+                    <p>Click me</p>
+                </div> -->
         </div>
 
         <!-- modal pop up box appears -->
         <div class="modal">
             <div class="modal-content">
-<<<<<<< HEAD
-                <!-- <span class="close-button">×</span> -->
-                
-=======
-                <span class="close-button">×</span>
-
->>>>>>> d0d755c8d5857b856ad1adbf27aa319c4f510ada
                 <h1>Pick a month for 2019!</h1>
                 <!-- <div id="modal-choice"> -->
                 <form>

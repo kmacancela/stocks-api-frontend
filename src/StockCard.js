@@ -12,24 +12,24 @@ class StockCard {
     this.buttonDIV = document.createElement('div')
     this.buyButton = document.createElement('button')
 
+    // this.buyButton.addEventListener("click", () => {
+    //   if (event.target === this.buyButton) {
+    //     toggleModal();
+    //   }
+    //   popUpWindow(stock)
+    // })
+
     this.buyButton.addEventListener("click", () => {
-        // ModalStocks.getStocks(this.symbol)
-        //   .then(data => {
-        //       // console.log("Monthly: ", data["Monthly Time Series"])
-        //       // let monthlyData = data["Monthly Time Series"]
-        //       // console.log(monthlyData["2019-10-21"])
-        //   })
-
-        // will trigger modal popup window
-        if (event.target === this.buyButton) {
-            toggleModal();
-        }
-
-        // to add data in modal
-        popUpWindow(stock)
+      if (event.target === this.buyButton) {
+        toggleModal()
+      }
+      popUpWindow(stock)
     })
 
   }
+
+
+
     //create elements
 
     render(){
@@ -51,6 +51,8 @@ class StockCard {
       this.stockDIV.append(this.contentDIV, this.buttonDIV)
       stocksMainDIV.append(this.stockDIV)
 
+
+      
       return stocksMainDIV
     }
 
