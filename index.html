@@ -20,21 +20,14 @@
         <div class="sidestocks ui cards stocks">
             <h1 class="balance"></h1>
             <!-- Choosen stocks here -->
-            <button class name="done">Done</button>
+            <button class="done" disabled>Done</button>
         </div>
     </div>
 
-
-
-
-
-
-
     <div class="main">
-        <h1>Stocks Game</h1>
         <div id="optionBar">
-          <button id="buttonNewGame" class="">New Game</button>
-          <button id="buttonScore" class="selected">Score Table</button>
+          <button id="buttonNewGame" class="" style="visibility: hidden">New Game</button>
+          <button id="buttonScore" class="selected" style="visibility: hidden">Score Table</button>
         </div>
 
 
@@ -44,6 +37,7 @@
         <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name" style="visibility: hidden">
 
         <div class="ui cards stocks" id="stocksMainDIV">
+            <!-- all stocks go here -->
 
           <div class="chart" style="background-color: white">
 
