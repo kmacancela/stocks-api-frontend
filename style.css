@@ -91,7 +91,7 @@
 
 /* Style for modal popup box -*/
 
-.modal {
+.modal, .modal-tutorial {
     position: fixed;
     left: 0;
     top: 0;
@@ -104,7 +104,7 @@
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.modal-content {
+.modal-content, .modal-content-tutorial {
     position: absolute;
     top: 50%;
     left: 50%;

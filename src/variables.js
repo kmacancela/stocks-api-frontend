@@ -18,4 +18,6 @@ const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 
 const alphaURL = `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=`
 const apiKey = `&apikey=CKKX1N7YZOUYD6IV`
-// const apiKey = `&apikey=demo`
+
+const modalTutorial = document.querySelector(".modal-tutorial")
+const modalDivTutorial = document.querySelector(".modal-content-tutorial")

@@ -7,13 +7,21 @@ let currentStock = null
 const calculateModal = document.querySelector("#calculate")
 const formEl = modalDiv.querySelector("form")
 
-// ModalStocks.getSP500().then(data => {
-//     data.forEach(stock => {
-//         let newStock = new StockCard(stock)
-//         newStock.render()
-//         // popUpWindow(stock)
-//     })
-// })
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modalTutorial.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modalTutorial.style.display = "none";
+  }
+}
 
 // calls
 const nextBtn = modalDiv.querySelector("#nextBtn")

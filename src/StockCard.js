@@ -11,27 +11,14 @@ class StockCard {
     this.labelSPAN = document.createElement('span')
     this.buttonDIV = document.createElement('div')
     this.buyButton = document.createElement('button')
-
-    // this.buyButton.addEventListener("click", () => {
-    //   if (event.target === this.buyButton) {
-    //     toggleModal();
-    //   }
-    //   popUpWindow(stock)
-    // })
-
     this.buyButton.addEventListener("click", () => {
       toggleModal(stock.Symbol);
     })
 
   }
 
-
-
-    //create elements
-
     render(){
       this.stockDIV.className = "card"
-      // this.stockDIV.setAttribute("data-id", )
       this.contentDIV.className = "content"
       this.headerDIV.className = "header"
       this.headerDIV.innerText = this.name
@@ -48,12 +35,7 @@ class StockCard {
       this.stockDIV.append(this.contentDIV, this.buttonDIV)
       stocksMainDIV.append(this.stockDIV)
 
-
-
       return stocksMainDIV
     }
-
-
-    // adding an event listener for when user clicks on a buy button
 
 }

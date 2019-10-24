@@ -14,7 +14,7 @@ class LoginPage {
         this.easyButton.addEventListener('click', () => {
             startingAccount = 20000
             // console.log("Login: ", startingAccount)
-            balance.innerHTML = `Balance: $${startingAccount}`
+            // balance.innerHTML = `Balance: $${startingAccount}`
             stocksMainDIV.innerHTML = ""
 
             ModalStocks.getSP500()
@@ -26,12 +26,13 @@ class LoginPage {
                 })
                 sidenav.style.visibility = "visible"
                 searchBar.style.visibility = "visible"
+                modalTutorial.classList.toggle("show-modal");
             })
         })
 
         this.mediumButton.addEventListener('click', () => {
             startingAccount = 10000
-            balance.innerHTML = `Balance: $${startingAccount}`
+            // balance.innerHTML = `Balance: $${startingAccount}`
             stocksMainDIV.innerHTML = ""
 
             ModalStocks.getSP500().then(data => {
@@ -42,12 +43,13 @@ class LoginPage {
                 })
                 sidenav.style.visibility = "visible"
                 searchBar.style.visibility = "visible"
+                modalTutorial.classList.toggle("show-modal");
             })
         })
 
         this.hardButton.addEventListener('click', () => {
             startingAccount = 5000
-            balance.innerHTML = `Balance: $${startingAccount}`
+            // balance.innerHTML = `Balance: $${startingAccount}`
             stocksMainDIV.innerHTML = ""
 
             ModalStocks.getSP500().then(data => {
@@ -59,6 +61,7 @@ class LoginPage {
             })
             sidenav.style.visibility = "visible"
             searchBar.style.visibility = "visible"
+            modalTutorial.classList.toggle("show-modal");
         })
 
     }
