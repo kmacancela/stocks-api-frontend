@@ -31,6 +31,8 @@ const shareInput = document.querySelector("#shares")
 const totalField = document.querySelector("#totalShareValue")
 const mainDiv = document.querySelector(".main")
 
+let total
+
 
 function monthlyData(stock, month){
   console.log(stock, month)
@@ -98,7 +100,7 @@ function monthlyData(stock, month){
         let average = (~~stockChosen["2. high"] + ~~stockChosen["3. low"]) / 2
         stocksArr[stock] = {"average": average, "month": month}
         console.log("stocksArr: ", stocksArr)
-        checkAmount()
+        // checkAmount()
         return average
     })
 }
@@ -178,13 +180,17 @@ function shareTotal(){
         nextBtn.style.backgroundColor = ""
     }
     let price = stocksArr[currentStock].average
-    let total = input * price
+    total = input * price
     totalField.innerHTML = `
         $${total}
     `
 }
 
 function nextB(){
+    console.log("length: ", Object.keys(stocksArr).length)
+    console.log("array: ", Object.keys(stocksArr))
+    startingAccount = startingAccount - total
+    balance.innerHTML = `Balance: $${startingAccount}`
     toggleModal()
     let spanElements = mainDiv.querySelectorAll(".symbol")
     let spanArray = Array.from(spanElements)
@@ -193,10 +199,15 @@ function nextB(){
     let sideStocksDiv = document.querySelector(".sidestocks")
     cardChosen.lastElementChild.remove()
     sideStocksDiv.append(cardChosen)
+    checkAmount()
 }
 
 function checkAmount(){
-    if(Object.keys(stocksArr).length == 2) {
-        console.log("YES")
+    if(Object.keys(stocksArr).length > 0) {
+        doneBtn.disabled = false
+        doneBtn.style.backgroundColor = "green"
+    }
+    if(Object.keys(stocksArr).length > 4) {
+        stocksMainDIV.querySelectorAll("button").forEach(button => button.disabled = true)
     }
 }

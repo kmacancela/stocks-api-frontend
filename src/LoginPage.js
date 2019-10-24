@@ -58,6 +58,10 @@ class LoginPage {
                     let newStock = new StockCard(stock)
                     newStock.render()
                 })
+                sidenav.style.visibility = "visible"
+                searchBar.style.visibility = "visible"
+                newGameBtn.style.visibility = "visible"
+                scoreboardBtn.style.visibility = "visible"
             })
             sidenav.style.visibility = "visible"
             searchBar.style.visibility = "visible"
@@ -68,7 +72,7 @@ class LoginPage {
 
     render() {
         this.loginDiv.className = "login"
-        this.h1.innerText = 'Start a new game'
+        this.h1.innerText = 'STOCK MASTER'
         this.h3.innerText = 'Choose your level'
         this.easyButton.className = 'btn btn-primary btn-block btn-large'
         this.mediumButton.className = 'btn btn-primary btn-block btn-large'
