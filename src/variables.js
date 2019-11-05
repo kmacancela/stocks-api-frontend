@@ -14,6 +14,11 @@ const doneBtn = document.querySelector(".done")
 const newGameBtn = document.querySelector("#buttonNewGame")
 const scoreboardBtn = document.querySelector("#buttonScore")
 
+const startGameBtn = document.querySelector("mask")
+const startGameDiv = document.querySelector("#startGame")
+// const easyButton = document.querySelector("")
+const loginDiv = document.querySelector(".loginDiv")
+
 // "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"
 
 const url = "https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/64dd3e9582b936b0352fdd826ecd3c95/constituents_json.json"

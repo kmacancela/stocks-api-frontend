@@ -1,112 +1,93 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
-</head>
-
-<body>
-
-        <!-- <div class="button">
-            <p>Click me</p>
-        </div> -->
-
-    <div class="sidenav" style="visibility: hidden">
-        <div class="sidestocks ui cards stocks">
-            <h1 class="balance"></h1>
-            <!-- Choosen stocks here -->
-            <button class="done" disabled>Done</button>
-        </div>
-    </div>
-
-    <div class="main">
-        <div id="optionBar">
-          <button id="buttonNewGame" class="" style="visibility: hidden">New Game</button>
-          <button id="buttonScore" class="selected" style="visibility: hidden">Score Table</button>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" />
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script> -->
+    </head>
+    <body>
+        <div id="startGame" style="visibility: visible">
+            <svg viewBox="45 60 400 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFE4B5" d="M 90 210 C 90 180 90 150 90 150 C 150 150 180 150 180 150 C 180 150 300 150 300 150 C 300 150 330 150 390 150 C 390 150 390 180 390 210 C 390 240 390 270 390 270 C 330 270 300 270 300 270 C 300 270 180 270 180 270 C 180 270 150 270 90 270 C 90 270 90 240 90 210" mask="url(#knockout-text)" ></path>
+                <mask id="knockout-text" id="startGameBtn">
+                    <rect width="100%" height="100%" fill="#fff" x="0" y="0" />
+                    <text x="147" y="227" fill="#000">START GAME</text>
+                </mask>
+            </svg>
         </div>
 
-
-
-
-        <!-- search bar-->
-        <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name" style="visibility: hidden">
-
-        <div class="ui cards stocks" id="stocksMainDIV">
-            <!-- all stocks go here -->
-
-          <div class="chart" style="background-color: white">
-
-
-          </div>
-
-            <!-- stocks -->
-            <!-- <div class="button">
-                    <p>Click me</p>
-                </div> -->
-
-        </div>
-
-
-
-
-
-        <!-- modal pop up box appears -->
-        <div class="modal">
-            <div class="modal-content">
-
-                <!-- <span class="close-button">×</span> -->
-
-                <h1>Pick a month for 2018!</h1>
-                <!-- <div id="modal-choice"> -->
-                <form data-id="">
-                    <div class="month-btns">
-                        <button id="jan" name="January">January</button>
-                        <button id="feb" name="February">February</button>
-                        <button id="mar" name="March">March</button>
-                        <button id="apr" name="April">April</button>
-                        <button id="may" name="May">May</button>
-                        <button id="jun" name="June">June</button>
-                        <button id="jul" name="July">July</button>
-                        <button id="aug" name="August">August</button>
-                        <button id="sep" name="September">September</button>
-                        <button id="oct" name="October">October</button>
-                        <button id="nov" name="November">November</button>
-                        <button id="dec" name="December">December</button>
-                    </div>
-
-                    <div id="calculate">
-                        <!-- <label for="shareValue">Share Value</label><br> -->
-                        <span id="shareValue"><b>price</b></span>
-                        <input type="number" id="shares" placeholder="Number of stocks" onkeyup="shareTotal()" disabled/>
-                        <label for="total">Total</label>
-                        <span id="totalShareValue">$0</span>
-                    </div>
-                    <input type="submit" id= "nextBtn" name="nextBtn" value="Next" onclick="nextB()" disabled />
-                    <!-- <button id="nextBtn">Next</button> -->
-                <!-- </div> -->
-                </form>
+        <div class="sidenav" style="visibility: hidden">
+            <div class="sidestocks ui cards stocks">
+                <h1 class="balance">
+                    <!-- balance will appear here -->
+                </h1>
+                <!-- Choosen stocks here -->
+                <button class="done" disabled>Done</button>
             </div>
         </div>
 
-    </div>
+        <div class="main">
+            <div class="loginDiv" style="visibility: hidden"></div>
 
+            <!-- Try to put the visibility to the div instead************* -->
+            <div id="optionBar">
+                <button id="buttonNewGame" class="" style="visibility: hidden">New Game</button>
+                <button id="buttonScore" class="selected" style="visibility: hidden">Score Table</button>
+            </div>
 
+            <!-- search bar-->
+            <input type="text" id="myInput" onkeyup="searchStocks()" placeholder="Search for stocks.." title="Type in a name" style="visibility: hidden">
 
+            <div class="ui cards stocks" id="stocksMainDIV">
+                <!-- all stocks go here -->
+                <div class="chart" style="background-color: white">
+                    <!-- chart JS will appear here -->
+                </div>
+            </div>
 
+            <!-- modal pop up box appears -->
+            <div class="modal">
+                <div class="modal-content">
+                    <!-- <span class="close-button">×</span> -->
+                    <h1>Pick a month for 2018!</h1>
+                    <form data-id="">
+                        <div class="month-btns">
+                            <button id="jan" name="January" class="ui button">January</button>
+                            <button id="feb" name="February" class="ui button">February</button>
+                            <button id="mar" name="March" class="ui button">March</button>
+                            <button id="apr" name="April" class="ui button">April</button>
+                            <button id="may" name="May" class="ui button">May</button>
+                            <button id="jun" name="June" class="ui button">June</button>
+                            <button id="jul" name="July" class="ui button">July</button>
+                            <button id="aug" name="August" class="ui button">August</button>
+                            <button id="sep" name="September" class="ui button">September</button>
+                            <button id="oct" name="October" class="ui button">October</button>
+                            <button id="nov" name="November" class="ui button">November</button>
+                            <button id="dec" name="December" class="ui button">December</button>
+                        </div>
+                        <br>
+                        <div id="calculate">
+                            <span id="shareValue"></span>
+                            <input type="number" id="shares" placeholder="Number of stocks" onkeyup="shareTotal()" disabled style="cursor: no-drop"/>
+                            <br><br>
+                            <label for="total">Total</label>
+                            <span id="totalShareValue">$0</span>
+                        </div>
+                        <br>
+                        <input type="submit" id= "nextBtn" name="nextBtn" value="Next" onclick="nextB()" class="ui button" disabled />
+                    </form>
+                </div>
+            </div>
+        </div>
 
-
-    <script src="src/variables.js"></script>
-    <script src="src/ModalStocks.js"></script>
-    <script src="src/LoginPage.js"></script>
-    <script src="src/ScoreTable.js"></script>
-    <script src="src/StockCard.js"></script>
-    <script src="src/chart.js"></script>
-    <script src="src/index.js"></script>
-</body>
-
+        <script src="src/variables.js"></script>
+        <script src="src/ModalStocks.js"></script>
+        <script src="src/LoginPage.js"></script>
+        <script src="src/ScoreTable.js"></script>
+        <script src="src/StockCard.js"></script>
+        <script src="src/chart.js"></script>
+        <script src="src/index.js"></script>
+    </body>
 </html>

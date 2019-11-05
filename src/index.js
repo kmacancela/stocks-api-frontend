@@ -7,14 +7,6 @@ let currentStock = null
 const calculateModal = document.querySelector("#calculate")
 const formEl = modalDiv.querySelector("form")
 
-// ModalStocks.getSP500().then(data => {
-//     data.forEach(stock => {
-//         let newStock = new StockCard(stock)
-//         newStock.render()
-//         // popUpWindow(stock)
-//     })
-// })
-
 // calls
 const nextBtn = modalDiv.querySelector("#nextBtn")
 const monthBtns = document.querySelector(".month-btns")
@@ -24,7 +16,7 @@ const totalField = document.querySelector("#totalShareValue")
 const mainDiv = document.querySelector(".main")
 
 let total
-
+let input
 
 function monthlyData(stock, month){
   console.log(stock, month)
@@ -123,10 +115,11 @@ function toggleModal(stockSymbol) {
         button.style.backgroundColor = ""
         nextBtn.disabled = true
         nextBtn.style.backgroundColor = ""
-        sharePrice.innerHTML = "<b>price</b>"
+        sharePrice.innerHTML = ""
         shareInput.placeholder = "Number of stocks"
         shareInput.value = ""
         shareInput.disabled = true
+        shareInput.style.cursor = "no-drop"
         totalField.innerHTML = "$0"
     })
     modal.classList.toggle("show-modal");
@@ -140,6 +133,7 @@ formEl.addEventListener("click", async (evt) => {
       let month = evt.target.name
 
       shareInput.disabled = false
+      shareInput.style.cursor = "default"
       event.target.style.backgroundColor = "green"
       event.target.disabled = true
       monthBtns.querySelectorAll("button").forEach(button => button.disabled = true)
@@ -153,17 +147,8 @@ formEl.addEventListener("click", async (evt) => {
     }
 })
 
-// function search(stock){
-//
-// }
-
-
-// function popUpWindow(stock){
-//
-// }
-
 function shareTotal(){
-    let input = shareInput.value
+    input = shareInput.value
     if ((input != ("" || 0)) || (input < 0)) {
         nextBtn.disabled = false
         nextBtn.style.backgroundColor = "green"
@@ -179,18 +164,21 @@ function shareTotal(){
 }
 
 function nextB(){
-    console.log("length: ", Object.keys(stocksArr).length)
-    console.log("array: ", Object.keys(stocksArr))
     startingAccount = startingAccount - total
     balance.innerHTML = `Balance: $${startingAccount}`
     toggleModal()
-    let spanElements = mainDiv.querySelectorAll(".symbol")
+    let spanElements = mainDiv.querySelectorAll("span")
     let spanArray = Array.from(spanElements)
     let i = spanArray.filter(s => s.innerHTML == currentStock)
     let cardChosen = i[0].parentElement.parentElement
     let sideStocksDiv = document.querySelector(".sidestocks")
-    cardChosen.lastElementChild.remove()
-    sideStocksDiv.append(cardChosen)
+    cardChosen.remove()
+    let clone = cardChosen.cloneNode(true)
+    clone.innerHTML += `$${total} spent on ${input} stocks`
+    clone.style.color = "black"
+    clone.style.cursor = "no-drop"
+    sideStocksDiv.append(clone)
+    
     checkAmount()
 }
 
@@ -203,3 +191,8 @@ function checkAmount(){
         stocksMainDIV.querySelectorAll("button").forEach(button => button.disabled = true)
     }
 }
+
+startGame.addEventListener("click", evt => {
+    startGameDiv.style.visibility = "hidden"
+    loginDiv.style.visibility = "visible"
+})
